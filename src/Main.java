@@ -22,6 +22,9 @@ public class Main {
 
         long duration = System.currentTimeMillis() - start;
         System.out.println(duration + " ms");
+
+        System.out.println(getSizeFromHumanReadable("5 GB"));
+
     }
 
     public static long getFolderSize(File folder) {
@@ -70,19 +73,20 @@ public class Main {
         long gigabyte = megabyte * 1024;
         long terabyte = gigabyte * 1024;
         String[] size = stringSize.split("\\s+");
+        long sizeByte = 0;
 
-        if (size[2].equals("KB")){
-            return Long.parseLong(size[1]) * kilobyte;
+        if (size[1].equals("KB")){
+            sizeByte = Long.parseLong(size[0]) * kilobyte;
         }
-        if (size[2].equals("MB")){
-            return Long.parseLong(size[1]) * megabyte;
+        if (size[1].equals("MB")){
+            sizeByte = Long.parseLong(size[0]) * megabyte;
         }
-        if (size[2].equals("GB")){
-            return Long.parseLong(size[1]) * gigabyte;
+        if (size[1].equals("GB")){
+            sizeByte = Long.parseLong(size[0]) * gigabyte;
         }
-        if (size[2].equals("TB")){
-            return Long.parseLong(size[1]) * terabyte;
+        if (size[1].equals("TB")){
+            sizeByte = Long.parseLong(size[0]) * terabyte;
         }
-        return 0;
+        return sizeByte;
     }
 }
